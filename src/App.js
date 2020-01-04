@@ -17,13 +17,13 @@ function App() {
       <div className="container">
         <h1>This is working</h1>
         {/* All the components are below */}
-        {/* <Navbar />
-        <br /> */}
+        <Navbar />
+        <br />
         {/* React router help us route the url path and data to that path */}
-        {/* <Route path="/" exact component={ExerciseList} />
+        <Route path="/" exact component={ExerciseList} />
         <Route path="/edit/:id" component={EditExercise} />
         <Route path="/create" component={CreateExercise} />
-        <Route path="/user" component={CreateUser} /> */}
+        <Route path="/user" component={CreateUser} />
       </div>
     </Router>
   );
