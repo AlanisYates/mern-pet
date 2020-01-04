@@ -14,7 +14,7 @@ const petSchema = new Schema(
     available: { type: Boolean, required: true},
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
