@@ -30,7 +30,7 @@ router.route("/add").post((req, res) => {
 
   newPet
     .save()
-    .then(() => res.json("Pet added!"))
+    .then(() => res.json("Pets added!"))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
