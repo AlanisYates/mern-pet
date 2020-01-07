@@ -5,13 +5,16 @@ import { BrowserRouter, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from "./components/layout/NavigationBar";
 
+
 // // Importing the Components
 
 function App() {
   return (
     <div className="App">
-      <NavigationBar />
-      <h1>Hello, this work?</h1>
+      <React.Fragment>
+        <NavigationBar />
+        <h1>Hello, this work?</h1>
+      </React.Fragment>
     </div>
   );
 }
