@@ -1,21 +1,28 @@
 import React from "react";
 // React Router is used to ctalk to the backend and the routes created.
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 // Imported bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavigationBar from "./components/layout/NavigationBar";
-
 
 // // Importing the Components
+import Navbar from "./components/Navbar.component";
+import PetList from "./components/PetList";
+import EditPet from "./components/EditPet";
+import AddPet from "./components/AddPet";
+import CreateUser from "./components/CreateUser";
 
 function App() {
   return (
-    <div className="App">
-      <React.Fragment>
-        <NavigationBar />
-        <h1>Hello, this work?</h1>
-      </React.Fragment>
-    </div>
+    <Router>
+      <div className="container">
+        <Navbar />
+        <br />
+        <Route path="/" exact component={PetList} />
+        <Route path="/edit/:id" component={EditPet} />
+        <Route path="/create" component={AddPet} />
+        <Route path="/user" component={CreateUser} />
+      </div>
+    </Router>
   );
 }
 
