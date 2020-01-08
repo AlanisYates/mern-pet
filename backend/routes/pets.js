@@ -50,15 +50,13 @@ router.route("/:id").delete((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-// Update an existing pete
+// Update an existing pet
 router.route("/update/:id").post((req, res) => {
   Pet.findById(req.params.id)
     .then(pet => {
       pet.petname = req.body.petname;
       pet.description = req.body.description;
       pet.age = Number(req.body.age);
-      pet.date = Date.parse(req.body.date);
-      pet.available = req.body.available;
       pet.breed = req.body.breed;
 
       pet

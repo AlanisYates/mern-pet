@@ -73,9 +73,9 @@ export class PetList extends Component {
           <thead className="thead-light">
             <tr>
               <th>Name</th>
+              <th>Description</th>
               <th>Breed</th>
               <th>Age</th>
-              <th>Description</th>
             </tr>
           </thead>
     <tbody>{this.petList()}</tbody>

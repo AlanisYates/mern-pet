@@ -25,11 +25,6 @@ export class Navbar extends Component {
                 Create User
               </Link>
             </li>
-            <li className="navbar-item">
-              <Link to="/edit/:id" className="nav-link">
-                Edit Pet
-              </Link>
-            </li>
           </ul>
         </div>
       </nav>
