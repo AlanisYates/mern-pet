@@ -14,6 +14,7 @@ router.route('/').get((req, res) => {
 
 // Adding user Route
 router.route('/add').post((req, res) => {
+  // Expecting in the body when recieving a post request.
   const username = req.body.username;
 
   const newUser = new User({username});

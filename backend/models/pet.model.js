@@ -7,14 +7,15 @@ const Schema = mongoose.Schema;
 // Schema Template
 const petSchema = new Schema(
   {
-    username: { type: String, required: true },
+    petname: { type: String, required: true },
     description: { type: String, required: true },
     age: { type: Number, required: true },
     date: { type: Date, required: true },
-    available: { type: Boolean, required: true},
+    available: { type: Boolean, required: true },
+    breed: { type: String, required: true }
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 

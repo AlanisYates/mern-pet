@@ -1,40 +1,36 @@
 import React, { Component } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 
 export class AddPet extends Component {
   constructor(props) {
     super(props);
 
     //Binding this to the methods.
-    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePetname = this.onChangePetname.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeAge = this.onChangeAge.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onChangeBreed = this.onChangeBreed.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     // Setting the state of the property with keys equal to the mongo DB prop
     this.state = {
-      username: "",
+      petname: "",
       description: "",
       age: 0,
       date: new Date(),
-      availible: true,
-      breed: "",
-      users: []
+      available: true,
+      breed: ""
     };
   }
 
-  // Lifecycle methods
-  componentDidMount() {
-    this.setState({ users: ["test user"], username: "test user" });
-  }
-
   // Methods used to update the state of the props.
-  onChangeUsername(e) {
+  onChangePetname(e) {
     // Setting the state.
     this.setState({
-      username: e.target.value
+      petname: e.target.value
     });
   }
   onChangeDescription(e) {
@@ -74,15 +70,20 @@ export class AddPet extends Component {
     e.preventDefault();
 
     const pet = {
-      username: this.state.username,
+      petname: this.state.petname,
       description: this.state.description,
       age: this.state.age,
       date: this.state.date,
-      availible: this.state.availible,
+      available: this.state.available,
       breed: this.state.breed
     };
 
     console.log(pet);
+
+    // Sending the data to the database
+    axios
+      .post("http://localhost:5000/pets/add", pet)
+      .then(res => console.log(res.data));
 
     // Changing to the homepage
     window.location = "/";
@@ -93,24 +94,42 @@ export class AddPet extends Component {
       <div>
         <h3>Create New Exercise Log</h3>
         <form onSubmit={this.onSubmit}>
+          {/* Name */}
           <div className="form-group">
-            <label>Username: </label>
-            <select
-              ref="userInput"
+            <label>Name: </label>
+            <input
+              type="text"
               required
               className="form-control"
-              value={this.state.username}
-              onChange={this.onChangeUsername}
-            >
-              {this.state.users.map(function(user) {
-                return (
-                  <option key={user} value={user}>
-                    {user}
-                  </option>
-                );
-              })}
-            </select>
+              value={this.state.petname}
+              onChange={this.onChangePetname}
+            />
           </div>
+
+          {/* Breed */}
+          <div className="form-group">
+            <label>Breed: </label>
+            <div>
+              <input
+                type="text"
+                className="form-control"
+                value={this.state.breed}
+                onChange={this.onChangeBreed}
+              />
+            </div>
+          </div>
+
+          {/* Age */}
+          <div className="form-group">
+            <label>Age: </label>
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.age}
+              onChange={this.onChangeAge}
+            />
+          </div>
+
           <div className="form-group">
             <label>Description: </label>
             <input
@@ -121,15 +140,7 @@ export class AddPet extends Component {
               onChange={this.onChangeDescription}
             />
           </div>
-          <div className="form-group">
-            <label>Duration (in minutes): </label>
-            <input
-              type="text"
-              className="form-control"
-              value={this.state.age}
-              onChange={this.onChangeAge}
-            />
-          </div>
+
           <div className="form-group">
             <label>Date: </label>
             <div>
@@ -139,17 +150,7 @@ export class AddPet extends Component {
               />
             </div>
           </div>
-          <div className="form-group">
-            <label>Breed: </label>
-            <div>
-                <input
-                type="text"
-                className="form-group"
-                value={this.state.breed}
-                onChange={this.onChangeBreed}
-                />
-            </div>
-          </div>
+
           <div className="form-group">
             <input
               type="submit"

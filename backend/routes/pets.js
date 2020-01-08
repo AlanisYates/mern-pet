@@ -13,19 +13,21 @@ router.route("/").get((req, res) => {
 
 // adding pet to the db
 router.route("/add").post((req, res) => {
-  const username = req.body.username;
+  const petname = req.body.petname;
   const description = req.body.description;
   const age = Number(req.body.age);
   const date = Date.parse(req.body.date);
   const available = req.body.available;
+  const breed = req.body.breed;
 
   // takes the variables above and createsa new pet wth them.
   const newPet = new Pet({
-    username,
+    petname,
     description,
     age,
     date,
-    available
+    available,
+    breed
   });
 
   newPet
@@ -52,11 +54,12 @@ router.route("/:id").delete((req, res) => {
 router.route("/update/:id").post((req, res) => {
   Pet.findById(req.params.id)
     .then(pet => {
-      pet.username = req.body.username;
+      pet.petname = req.body.petname;
       pet.description = req.body.description;
       pet.age = Number(req.body.age);
       pet.date = Date.parse(req.body.date);
       pet.available = req.body.available;
+      pet.breed = req.body.breed;
 
       pet
         .save()
