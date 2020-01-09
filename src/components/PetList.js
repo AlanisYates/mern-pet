@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import axios from "axios";
 
 // Functional Pet component
@@ -9,6 +10,8 @@ const Pet = props => (
     <td>{props.pet.description}</td>
     <td>{props.pet.breed}</td>
     <td>{props.pet.age}</td>
+    <td>{props.pet.date}</td>
+    <td>{JSON.stringify(props.pet.available)}</td>
     <td>
       <Link to={"/edit/" + props.pet._id}>edit</Link> |{" "}
       <a
@@ -41,6 +44,11 @@ export class PetList extends Component {
       .then(res => {
         this.setState({ pets: res.data });
       })
+      .then(res =>
+        this.setState({
+          pets: this.state.pets.filter(el => el.available !== false)
+        })
+      )
       .catch(err => console.log(err));
   }
 
@@ -76,9 +84,11 @@ export class PetList extends Component {
               <th>Description</th>
               <th>Breed</th>
               <th>Age</th>
+              <th>Date</th>
+              <th>available</th>
             </tr>
           </thead>
-    <tbody>{this.petList()}</tbody>
+          <tbody>{this.petList()}</tbody>
         </table>
       </div>
     );

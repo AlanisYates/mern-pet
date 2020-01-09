@@ -54,7 +54,7 @@ export class AddPet extends Component {
   onChangeAvalibility(e) {
     // Setting the state.
     this.setState({
-      availible: true
+      availible: false
     });
   }
   onChangeBreed(e) {
@@ -145,6 +145,7 @@ export class AddPet extends Component {
             <label>Date: </label>
             <div>
               <DatePicker
+                dateFormat="MM-dd-yyyy"
                 selected={this.state.date}
                 onChange={this.onChangeDate}
               />
