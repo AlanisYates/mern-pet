@@ -35,7 +35,6 @@ const usersRouter = require('./routes/users');
 app.use('/pets', petsRouter);
 app.use('/users', usersRouter);
 
-
 // Starts the server
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
