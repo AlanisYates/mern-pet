@@ -5,21 +5,21 @@ import pug from "../Assets/img/pug.jpg";
 import CardDeck from "react-bootstrap/CardDeck";
 
 import axios from "axios";
-import Container from "react-bootstrap/Container";
 
 // Functional Pet component
 const Pet = props => (
-  <Card
-    tag="a"
-    className="text-center"
-    style={{ width: "2rem", cursor: "pointer" }}
-  >
-    <Card.Img variant="top" src={pug} />
+  <Card className="text-center" style={{ width: "2rem" }}>
+    <Card.Img variant="top" src={pug} fluid />
     <Card.Body>
-      <Container>
-        <Card.Title>{props.pet.petname}</Card.Title>
-      </Container>
+      <Card.Title>{props.pet.petname}</Card.Title>
     </Card.Body>
+    <Link
+      className="btn-primary"
+      style={{ textDecoration: "none" }}
+      to={"/info/" + props.pet._id}
+    >
+      More Info
+    </Link>
   </Card>
   // <tr>
   //   <td>{props.pet.petname}</td>

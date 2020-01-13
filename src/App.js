@@ -10,6 +10,7 @@ import PetList from "./components/PetList";
 import EditPet from "./components/EditPet";
 import AddPet from "./components/AddPet";
 import CreateUser from "./components/CreateUser";
+import PetInfo from "./components/PetInfo";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/edit/:id" component={EditPet} />
         <Route path="/create" component={AddPet} />
         <Route path="/user" component={CreateUser} />
+        <Route path="/info/:id" component={PetInfo} />
       </div>
     </Router>
   );
