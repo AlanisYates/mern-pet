@@ -1,29 +1,45 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import pug from "../Assets/img/pug.jpg";
+import CardDeck from "react-bootstrap/CardDeck";
 
 import axios from "axios";
+import Container from "react-bootstrap/Container";
 
 // Functional Pet component
 const Pet = props => (
-  <tr>
-    <td>{props.pet.petname}</td>
-    <td>{props.pet.description}</td>
-    <td>{props.pet.breed}</td>
-    <td>{props.pet.age}</td>
-    <td>{props.pet.date}</td>
-    <td>{JSON.stringify(props.pet.available)}</td>
-    <td>
-      <Link to={"/edit/" + props.pet._id}>edit</Link> |{" "}
-      <a
-        href="#"
-        onClick={() => {
-          props.deletePet(props.pet._id);
-        }}
-      >
-        delete
-      </a>
-    </td>
-  </tr>
+  <Card
+    tag="a"
+    className="text-center"
+    style={{ width: "2rem", cursor: "pointer" }}
+  >
+    <Card.Img variant="top" src={pug} />
+    <Card.Body>
+      <Container>
+        <Card.Title>{props.pet.petname}</Card.Title>
+      </Container>
+    </Card.Body>
+  </Card>
+  // <tr>
+  //   <td>{props.pet.petname}</td>
+  //   <td>{props.pet.description}</td>
+  //   <td>{props.pet.breed}</td>
+  //   <td>{props.pet.age}</td>
+  //   <td>{props.pet.date}</td>
+  //   <td>{JSON.stringify(props.pet.available)}</td>
+  //   <td>
+  //     <Link to={"/edit/" + props.pet._id}>edit</Link> |{" "}
+  //     <a
+  //       href="#"
+  //       onClick={() => {
+  //         props.deletePet(props.pet._id);
+  //       }}
+  //     >
+  //       delete
+  //     </a>
+  //   </td>
+  // </tr>
 );
 
 export class PetList extends Component {
@@ -74,24 +90,7 @@ export class PetList extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h3>List of Pets</h3>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Breed</th>
-              <th>Age</th>
-              <th>Date</th>
-              <th>available</th>
-            </tr>
-          </thead>
-          <tbody>{this.petList()}</tbody>
-        </table>
-      </div>
-    );
+    return <CardDeck>{this.petList()}</CardDeck>;
   }
 }
 
